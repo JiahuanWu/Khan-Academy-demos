@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Project: Shooting Star</title>
+</head>
+
+<body>
+    <script>
+        draw();
+        var xPos = 400;
+        var yPos = 0;
+        var xPos2 = 300;
+        var yPos2 = 0;
+        function draw() {
+            background(29, 40, 115);
+            fill(255, 242, 0);
+            ellipse(xPos, yPos, 10, 10);
+            xPos--;
+            yPos++;
+            fill(255, 242, 0);
+            rect(xPos2, yPos2, 10, 10);
+            xPos2--;
+            yPos2 += 2;
+        };
+    </script>
+</body>
+
+</html>

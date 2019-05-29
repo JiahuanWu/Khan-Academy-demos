@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bookshelf</title>
+    <script src="https://cdn.jsdelivr.net/processing.js/1.4.8/processing.min.js"></script>
+</head>
+
+<body>
+    <canvas id="mycanvas"></canvas>
+    <script>
+        // Get the canvas that ProcessingJS will use
+        var canvas = document.getElementById("mycanvas");
+        // Pass the function to ProcessingJS constructor
+        var processingInstance = new Processing(canvas, programCode);
+        function programCode(processing) {
+            with (processing) {
+                size(400, 400);
+                function getImage(s) {
+                    var url = "https://www.kasandbox.org/programming-images/" + s + ".png";
+                    processing.externals.sketch.imageCache.add(url);
+                    return processing.loadImage(url);
+                }
+                var book = [
+                    {
+                        title: "The Burden of Responsibility",
+                        author: "Tony Judt",
+                        stars: 5,
+                        color: color(201, 195, 195),
+                        recommend: true
+                    },
+                    {
+                        title: "Dubliners",
+                        author: "James Joyce",
+                        stars: 4,
+                        color: color(101, 184, 122),
+                        recommend: false
+                    },
+                    {
+                        title: "The Social Animal",
+                        author: "Elliot Aronson",
+                        stars: 4,
+                        color: color(92, 152, 242),
+                        recommend: true
+                    },
+                    {
+                        title: "Running with Scissors",
+                        author: "Augusten Burroughs",
+                        stars: 3,
+                        color: color(216, 250, 165),
+                        recommend: false
+                    },
+                    {
+                        title: "1984",
+                        author: "George Orwell",
+                        stars: 5,
+                        color: color(250, 165, 233),
+                        recommend: true
+                    },
+                    {
+                        title: "Religion for Atheists",
+                        author: "Allan de Botton",
+                        stars: 4,
+                        color: color(190, 112, 235),
+                        recommend: true
+                    },
+                    {
+                        title: "The book of Disquiet",
+                        author: "Fernando Pessoa",
+                        stars: 3,
+                        color: color(162, 168, 150),
+                        recommend: false
+                    }
+
+                ];
+
+                for (var s = 0; s < 400 / 120; s++) {
+                    // draw shelf
+                    fill(173, 117, 33);
+                    rect(0, 120 + s * 120, width, 10);
+                }
+
+                for (var i = 0; i < book.length; i++) {
+                    if (i < 3) {
+                        fill(book[i].color);
+                        rect(10 + i * 120, 20, 95, 105);
+                        fill(0, 0, 0);
+                        text(book[i].title, 15 + i * 120, 25, 84, 100);
+                        fill(80, 75, 99);
+                        text(book[i].author, 15 + i * 120, 60, 84, 100);
+                        for (var j = 0; j < book[i].stars; j++) {
+                            console.log(getImage("cute/Star"))
+                            image(getImage("cute/Star"), 10 + i * 120 + j * 13, 100, 15, 24);
+                        }
+                        if (book[i].recommend) {
+                            image(getImage("cute/Selector"), 10 + 75 + i * 120, 100, 15, 24);
+                        }
+                    }
+                    else if (i >= 3 && i < 6) {
+                        fill(book[i].color);
+                        rect(i * 120 - 350, 140, 95, 105);
+                        fill(0, 0, 0);
+                        text(book[i].title, i * 120 - 345, 145, 84, 100);
+                        fill(80, 75, 99);
+                        text(book[i].author, i * 120 - 345, 180, 84, 100);
+
+                        for (var j = 0; j < book[i].stars; j++) {
+                            image(getImage("cute/Star"), i * 120 + j * 13 - 345, 220, 15, 24);
+                        }
+                        if (book[i].recommend) {
+                            image(getImage("cute/Selector"), i * 120 - 273, 220, 15, 24);
+                        }
+                    }
+                    else {
+                        fill(book[i].color);
+                        rect(i * 120 - 710, 260, 95, 105);
+                        fill(0, 0, 0);
+                        text(book[i].title, i * 120 - 705, 265, 84, 100);
+                        fill(80, 75, 99);
+                        text(book[i].author, i * 120 - 705, 300, 84, 100);
+
+                        for (var j = 0; j < book[i].stars; j++) {
+                            image(getImage("cute/Star"), i * 120 + j * 13 - 700, 340, 15, 24);
+                        }
+                        if (book[i].recommend) {
+                            image(getImage("cute/Selector"), i * 120 - 635, 340, 15, 24);
+                        }
+                    }
+                }
+            }
+        }
+
+    </script>
+</body>
+
+</html>
